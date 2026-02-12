@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Tracker - GPS Real-time</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📍 Location Tracker</h1>
+            <p>Real-time GPS Tracking System</p>
+        </div>
+
+        <div class="control-panel">
+            <div class="input-group">
+                <label for="phoneNumber">Nomor HP:</label>
+                <input 
+                    type="tel" 
+                    id="phoneNumber" 
+                    placeholder="Contoh: +62812345678"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="userName">Nama Pengguna:</label>
+                <input 
+                    type="text" 
+                    id="userName" 
+                    placeholder="Masukkan nama Anda"
+                    required
+                >
+            </div>
+
+            <div class="button-group">
+                <button id="startTracking" class="btn btn-primary">
+                    ▶ Mulai Tracking
+                </button>
+                <button id="stopTracking" class="btn btn-danger" disabled>
+                    ⏹ Hentikan Tracking
+                </button>
+            </div>
+
+            <div class="status-info">
+                <p>Status: <span id="status">Tidak Aktif</span></p>
+                <p>Akurasi: <span id="accuracy">-</span> meter</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+
+            <div class="info-panel">
+                <div class="info-section">
+                    <h3>📍 Lokasi Saat Ini</h3>
+                    <div class="info-item">
+                        <label>Latitude:</label>
+                        <span id="latitude">-</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Longitude:</label>
+                        <span id="longitude">-</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Alamat:</label>
+                        <span id="address">-</span>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>📊 Riwayat Lokasi</h3>
+                    <div id="historyList" class="history-list">
+                        <p class="empty-message">Tidak ada riwayat</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="location-tracker.js"></script>
+</body>
+</html>
